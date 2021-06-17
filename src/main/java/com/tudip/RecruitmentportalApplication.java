@@ -14,6 +14,7 @@ public class RecruitmentportalApplication {
 		SpringApplication.run(RecruitmentportalApplication.class, args);
 		logger.info("Recruitment Portal is UP.....");
 		System.err.println("<--------------Recruitment-Portal-Application-UP-------------->");
+		logger.info("Recruitment-Portal-Application-Running.....");
 	}
 
 }
