@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,8 @@ import com.tudip.services.ApplicantDetailsService;
 @RestController
 @CrossOrigin
 public class ApplicantDetailsController {
+	
+	Logger logger = LoggerFactory.getLogger(ApplicantDetailsController.class);
 
 	@Autowired
 	ApplicantDetailsService appDetailsService;
@@ -41,6 +45,7 @@ public class ApplicantDetailsController {
 	public GenericResponseDTO getAllActiveCandidates(@RequestParam Optional<String> name,
 			@RequestParam Optional<Integer> page,@RequestParam Optional<String> sortBy) {
 		GenericResponseDTO genericResponseDTO = null;
+		logger.info("Name:", name);
 		try {			
 			Pageable pageable = PageRequest.of(page.orElse(0), 5, Sort.Direction.DESC, sortBy.orElse("loginDetailsTblPk"));
 			genericResponseDTO = new GenericResponseDTO("success",HttpStatus.OK,
